@@ -5,6 +5,6 @@
 #include<vector>
 #include<list>
 
-void 
+void sample_stl_program();
 
 #endif
