@@ -47,10 +47,51 @@ void wypisz_na_cout(const Container& c){
 	std::cout << std::endl;
 }
 
+// zadanie 5 wykonaj na specjalnych warunkach
+template <typename Iter, typename Cond, typename Oper>
+void wykonaj_na_spelniajacych(Iter begin, Iter end, Cond cnd, Oper op)
+{
+	// dopóki iterator poczatku nie rowna sie koncowemu to wykonuj petle
+	while (begin != end) {
+		// sprawdzamy czy prawd¹ jest
+		// i je¿eli tak to zacznik od pierwszej wartoœci
+		if (cnd(*begin)){
+			op(*begin);
+		}
+		// przejdz do kolejnego elementu
+		++begin;
+	}
+}
+
+struct Zdolnoœæ_kredytowa{
+	bool operator() (int x){
+		return x >= 60000;
+	}
+};
+
+struct Przelej_300_kola{
+	int& przelew;
+
+	// konstruktor struktury przelej_300_kola
+	Przelej_300_kola(int& bank) : przelew(bank)
+	{
+
+	}
+
+	void operator() (int& x){
+		// dopsiuj do zmiennej dodatkowe 300k jesli warunek bool operation() == true
+		x += 300000;
+		przelew += 300000;
+	}
+};
+
 int main(){
 
+	//zadanie 1
 	//sample_stl_program();
 
+	// zadanie 4
+	/*
 	int t[4];
 	std::vector<int> v(4);
 
@@ -65,6 +106,24 @@ int main(){
 	wypisz_na_cout(v.begin(), v.end());
 	wypisz_na_cout(v.begin(), 4);
 	wypisz_na_cout(v);
+	*/
+
+	// zadanie 5
+	int konta[] = { 10123, 50, 999000, 100, 500, 60000, 100000 };
+	int ilosc_kont = sizeof(konta) / sizeof(konta[0]);
+
+	std::cout << "Konta ubiegaj¹ce siê o po¿yczke: ";
+	wypisz_na_cout(konta, konta + ilosc_kont);
+
+	int ilosc_pozyczonych_pieniedzy = 0; 
+	Przelej_300_kola pozyczka(ilosc_pozyczonych_pieniedzy);
+
+	wykonaj_na_spelniajacych(konta, konta + ilosc_kont, Zdolnoœæ_kredytowa(), pozyczka);
+
+	std::cout << "Konta po przyznaniu pozyczki: ";
+	wypisz_na_cout(konta, konta + ilosc_kont);
+	std::cout << "Ile po¿yczono: " << ilosc_pozyczonych_pieniedzy << '\n';
+
 
 	system("pause");
 	return 0;
