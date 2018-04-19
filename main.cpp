@@ -1,6 +1,8 @@
 #include "zadania.h"
 #include "lista.h"
 
+#include <boost/concept_check.hpp>
+
 // Przypadek gdy podajemy np adres na pierwszy element w tablicy i ostatni
 template <class Iter>
 void wypisz_na_cout(Iter begin, Iter end){
@@ -127,7 +129,24 @@ int main(){
 	std::cout << "Ile pozyczono: " << ilosc_pozyczonych_pieniedzy << '\n';
 	*/
 
+	// zadanie 6
 
+	Lista<int> x;
+
+	x.push_front(5);
+	x.push_front(4);
+
+	// zadanie 7
+	/*
+	boost:function_requires< ForwardIteratorConcept<vector<double>::iterator> >();
+
+	// typdef zeby kod by³ czytelniejszy i nie trzeba by³o pisac w srodku function_requires <Lista<char>::iterator>
+	// tylko po prostu it_listy
+	typedef Lista<char>::iterator it_listy;
+	boost::function_requires< ForwardIteratorConcept<it_listy> >();
+
+	std::cout << "Wszystko OK.\n";
+	*/
 	system("pause");
 	return 0;
 }

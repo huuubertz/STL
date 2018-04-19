@@ -100,7 +100,7 @@ private:
 
 public:
 
-	Lista() : head(0)
+	Lista() : head()
 	{
 
 	}
@@ -111,11 +111,37 @@ public:
 	void push_front(const T&);
 	// push back czy musze zdefiniowaæ zmienna tail lub jak¹œ end?
 	void push_back(const T&);
+	// ustaw iterator na pierwszy element w tablicy
+	void begin(){
+		return Iterator(head);
+	}
+	// ustaw iterator na ostatni element w pojemniku
+	void end(){
+		return Iterator(0);
+	}
 };
 #endif
 
+// destruktor
+template<typename T>
+Lista<T>::~Lista(){
+	// tworzymy wskaznik na obiekt typu Element
+	Element* p;
+
+	// dopóki istnieje head
+	// usuówaj element na który wskazuje wskaŸnik i przechpodŸ do nastêpnego
+	while(head){
+		p = head;
+		head = head->next;
+		delete p;
+	}
+
+}
+
 template <typename T>
 void Lista<T>::push_front(const T& value){
+	// stwórz now¹ tablice typu Element, z wartoœciami value i o zadanej d³ugoœci
 	Element* p = new Element(value, head);
+	// ustaw wskaŸnik head na p
 	head = p;
 }
