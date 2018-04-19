@@ -1,4 +1,5 @@
 #include "zadania.h"
+#include "lista.h"
 
 // Przypadek gdy podajemy np adres na pierwszy element w tablicy i ostatni
 template <class Iter>
@@ -109,6 +110,7 @@ int main(){
 	*/
 
 	// zadanie 5
+	/*
 	int konta[] = { 10123, 50, 999000, 100, 500, 60000, 100000 };
 	int ilosc_kont = sizeof(konta) / sizeof(konta[0]);
 
@@ -122,7 +124,8 @@ int main(){
 
 	std::cout << "Konta po przyznaniu pozyczki: ";
 	wypisz_na_cout(konta, konta + ilosc_kont);
-	std::cout << "Ile po¿yczono: " << ilosc_pozyczonych_pieniedzy << '\n';
+	std::cout << "Ile pozyczono: " << ilosc_pozyczonych_pieniedzy << '\n';
+	*/
 
 
 	system("pause");
